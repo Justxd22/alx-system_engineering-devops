@@ -2,4 +2,4 @@
 #parse logs
 
 log_file="apache-access.log"
-awk '{arr[$1" "$9]++} END {for (i in arr) print arr[i], i}' "$log_file" | sort -nr
+awk '{arr[$1" "$9]++} END {PROCINFO["sorted_in"]="@val_num_desc"; for (i in arr) print arr[i], i}' "$log_file"

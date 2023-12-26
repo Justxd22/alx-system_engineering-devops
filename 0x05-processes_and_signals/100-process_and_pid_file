@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# signal types
+
+f=/var/run/myscript.pid
+function handlekill {
+    echo 'I hate the kill command'
+    sudo rm $f
+    exit
+}
+function handleexit {
+    sudo rm $f
+    exit
+}
+trap handlekill SIGTERM
+trap handleexit SIGQUIT
+trap "echo 'Y U no love me?!'" SIGINT
+sudo bash -c "echo $$ > $f"
+while ((1))
+do
+    echo "To infinity and beyond"
+    sleep 2
+done

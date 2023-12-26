@@ -6,7 +6,7 @@
 
 /**
  * infinite_while - loop
- * 
+ *
  * Return: 1
  */
 int infinite_while(void)
@@ -18,7 +18,7 @@ int infinite_while(void)
 
 /**
  * main - create zombies
- * 
+ *
  * Return: 1
  */
 int main(void)

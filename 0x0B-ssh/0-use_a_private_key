@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 # script to connect to my server using priv key no password auth
+ssh-add ~/.ssh/school
 ssh ubuntu@100.26.229.109

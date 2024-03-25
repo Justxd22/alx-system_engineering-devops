@@ -1,0 +1,6 @@
+Frame 20: 76 bytes on wire (608 bits), 76 bytes captured (608 bits)
+Ethernet II, Src: PcsCompu_6f:fb:58 (08:00:27:6f:fb:58), Dst: RealtekU_12:35:02 (52:54:00:12:35:02)
+Internet Protocol Version 4, Src: 10.0.2.15, Dst: 52.57.139.126
+Transmission Control Protocol, Src Port: 34846, Dst Port: 587, Seq: 63, Ack: 214, Len: 22
+Simple Mail Transfer Protocol
+    Password: bXlwYXNzd29yZDk4OTgh

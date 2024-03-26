@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Fixing a docker to run apache and server simple html
+apt update
+apt install apache2
+service apache2 start

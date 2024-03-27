@@ -1,13 +1,8 @@
 # Nginx installation and configuration
-class nginx {
-  package { 'nginx':
+package { 'nginx':
     ensure => installed,
-  }
+}
 
-  service { 'nginx':
-    ensure => running,
-    enable => true,
-  }
 file { '/var/www/html/index.html':
   ensure  => file,
   content => 'Hello World!',
@@ -16,40 +11,41 @@ file { '/var/www/html/index.html':
 
 file { '/var/www/html/404.html':
   ensure  => file,
-  content => 'Ceci n\'est pas une page',
+  content => "Ceci n'est pas une page",
   require => Package['nginx'],
 }
 
-file { '/etc/nginx/sites-available/redirect_me':
+file { '/etc/nginx/sites-enabled/default':
     ensure  => file,
+    path    => '/etc/nginx/sites-enabled/default',
     content => "
-      server {
-        listen 80;
+    server {
+        listen 80 default_server;
         listen [::]:80 default_server;
-
-        location /redirect_me {return 301 https://www.youtube.com/watch?v=dQw4w9WgXcQ;}
-
-        error_page 404 /404.html;
-        location = /404.html {
-          root /var/www/html;
-          internal;
-        }
-
         root /var/www/html;
-        index index.html;
-      }
+        index index.html index.htm index.nginx-debian.html;
+        server_name _;
+        location / {
+                try_files \$uri \$uri/ =404;
+        }
+        error_page 404 /404.html;
+        location  /404.html {
+            internal;
+        }
+        if (\$request_filename ~ redirect_me){
+            rewrite ^ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
+        }
+    }
     ",
     require => Package['nginx'],
   }
 
-  file { '/etc/nginx/sites-enabled/redirect_me':
-    ensure  => link,
-    target  => '/etc/nginx/sites-available/redirect_me',
-    require => File['/etc/nginx/sites-available/redirect_me'],
-    notify  => Service['nginx'],
-  }
-
+exec { 'restart service':
+  command => 'service nginx restart',
+  path    => '/usr/bin:/usr/sbin:/bin',
 }
 
-class { 'nginx': }
-
+service { 'nginx':
+  ensure => running,
+  enable => true,
+}

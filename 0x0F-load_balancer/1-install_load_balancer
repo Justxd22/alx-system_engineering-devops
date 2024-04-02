@@ -5,11 +5,8 @@ sudo echo -e "frontend haproxynode
 \tbind *:80
 \tmode http
 \tdefault_backend nodes" | sudo tee -a /etc/haproxy/haproxy.cfg
-sudo echo -e "backend nodes
-\tmode http
+sudo echo -e "backend webservers
 \tbalance roundrobin
-\toption forwardfor
-\thttp-request set-header X-Forwarded-Port %[dst_port]
-\tserver 274-web-01 35.231.71.122:80 check
-\tserver 274-web-02 35.196.73.169:80 check" | sudo tee -a /etc/haproxy/haproxy.cfg
+\tserver 505456-web-01 52.3.254.46:80 check
+\tserver 505456-web-02 100.26.211.242:80 check" | sudo tee -a /etc/haproxy/haproxy.cfg
 sudo service haproxy restart

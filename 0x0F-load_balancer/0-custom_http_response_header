@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# configure nginx to serve cutom header
+sudo apt update -y
+sudo apt install nginx -y
+sudo sed -i "24i add_header X-Served-By $HOSTNAME;" /etc/nginx/sites-available/default
+sudo service nginx restart

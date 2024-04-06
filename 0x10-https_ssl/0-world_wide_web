@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# print info about given domain using dig
+
+printI () {
+    dig "$1" | grep -A1 'ANSWER SECTION:' | sed -r "s/$1./$2/g" | awk -F" " ' NR==2 { print "The subdomain " $1 " is a " $4 " record and points to " $5 }'
+}
+
+if [ "$#" -eq 2 ]
+then
+    printI "$2.$1" "$2"
+else
+    printI "www.$1" "www"
+    printI "lb-01.$1" "lb-01"
+    printI "web-01.$1" "web-01"
+    printI "web-02.$1" "web-02"
+fi

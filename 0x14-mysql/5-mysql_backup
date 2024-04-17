@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# create sql dump and tar zip it with today's date
+mysqldump -u root -p"$1" --all-databases > backup.sql
+tar -czf "$(date +"%d-%m-%y")".tar.gz backup.sql

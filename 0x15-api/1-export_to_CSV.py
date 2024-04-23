@@ -21,6 +21,6 @@ if __name__ == "__main__":
     pointer = csv.writer(file, quoting=csv.QUOTE_ALL)
     for x in task:
         line = [x.get('userId'), name,
-                 x.get('completed'), x.get('title')]
+                x.get('completed'), x.get('title')]
         pointer.writerow(line)
     file.close()

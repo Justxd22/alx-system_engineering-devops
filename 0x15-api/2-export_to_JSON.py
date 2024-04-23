@@ -17,7 +17,9 @@ if __name__ == "__main__":
     task = json.loads(res1.text)
     dump = {sys.argv[1]: []}
     for x in task:
-        dump[sys.argv[1]].append({"task": x.get('title'), "completed": x.get('completed'), "username": name,})
+        dump[sys.argv[1]].append({"task": x.get('title'),
+                                  "completed": x.get('completed'),
+                                  "username": name})
     file = open(f"{sys.argv[1]}.json", "w")
     json.dump(dump, file)
     file.close()

@@ -14,12 +14,12 @@ if __name__ == "__main__":
         exit(1)
     name = json.loads(res.text)["name"]
     task = json.loads(res1.text)
-    l = len(task)
+    lentasks = len(task)
     done = []
     for i in task:
         if i["completed"]:
             done.append(i)
-    print(f"Employee {name} is done with tasks({len(done)}/{l}):")
+    print(f"Employee {name} is done with tasks({len(done)}/{lentasks}):")
     for i in done:
         t = i["title"]
         print(f"     {t}")

@@ -1,14 +1,13 @@
 #!/usr/bin/python3
 """Requests check status."""
+import json
 import requests
 import sys
-import json
 
 if __name__ == "__main__":
     url = f"https://jsonplaceholder.typicode.com/users/{sys.argv[1]}"
     res = requests.get(url)
     res1 = requests.get(url + "/todos")
-    print(url + "/todo")
     if res.status_code >= 400:
         print("Error code: {}".format(res.status_code))
         exit(1)
@@ -22,4 +21,4 @@ if __name__ == "__main__":
     print(f"Employee {name} is done with tasks({len(done)}/{lentasks}):")
     for i in done:
         t = i["title"]
-        print(f"     {t}")
+        print(f"         {t}")

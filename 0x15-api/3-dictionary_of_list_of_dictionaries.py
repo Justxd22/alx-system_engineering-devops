@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """Requests check status."""
+import json
 import requests
 import sys
-import json
 
 if __name__ == "__main__":
     url = f"https://jsonplaceholder.typicode.com"
@@ -19,7 +19,6 @@ if __name__ == "__main__":
         for i in name:
             if i["id"] == x.get("userId"):
                 namex = i["name"]
-        print(namex)
         try:
             dump[x.get("userId")].append({"username": namex,
                                           "task": x.get('title'),

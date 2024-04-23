@@ -13,7 +13,7 @@ if __name__ == "__main__":
         print("Error code: {}".format(res.status_code))
         exit(1)
 
-    name = json.loads(res.text)["name"]
+    name = json.loads(res.text)["username"]
     task = json.loads(res1.text)
 
     file = open(f"{sys.argv[1]}.csv", "w")

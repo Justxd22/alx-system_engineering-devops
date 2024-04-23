@@ -21,4 +21,4 @@ if __name__ == "__main__":
     print(f"Employee {name} is done with tasks({len(done)}/{lentasks}):")
     for i in done:
         t = i["title"]
-        print('\t {}\n'.format(t), end="") 
+        print('\t {}\n'.format(t), end="")

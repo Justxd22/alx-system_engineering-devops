@@ -18,15 +18,15 @@ if __name__ == "__main__":
     for x in task:
         for i in name:
             if i["id"] == x.get("userId"):
-                namex = i["name"]
+                namex = i["username"]
         try:
             dump[x.get("userId")].append({"username": namex,
-                                          "task": x.get('title'),
-                                          "completed": x.get('completed')})
+                                          "completed": x.get('completed'),
+                                          "task": x.get('title')})
         except KeyError:
             dump[x.get("userId")] = [{"username": namex,
-                                      "task": x.get('title'),
-                                      "completed": x.get('completed')}]
+                                      "completed": x.get('completed'),
+                                      "task": x.get('title')}]
     file = open("todo_all_employees.json", "w")
     json.dump(dump, file)
     file.close()

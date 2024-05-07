@@ -1,11 +1,11 @@
 #!/usr/bin/python3
-"""Get user counts from reddit api."""
+# get subs
 from requests import get
-import sys
+from sys import argv
 
 
 def number_of_subscribers(subreddit):
-    """Use the Reddit api."""
+    """subs"""
     h = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) \
          AppleWebKit/537.36 (KHTML, like Gecko) \
          Chrome/97.0.4692.99 Safari/537.36"}
@@ -17,4 +17,4 @@ def number_of_subscribers(subreddit):
         return 0
 
 if __name__ == "__main__":
-    number_of_subscribers(sys.argv[1])
+    number_of_subscribers(argv[1])

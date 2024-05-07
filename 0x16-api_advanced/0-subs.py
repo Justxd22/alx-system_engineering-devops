@@ -1,20 +1,26 @@
 #!/usr/bin/python3
-# get subs
+"""Get user counts from reddit api."""
 from requests import get
-from sys import argv
+import sys
 
 
 def number_of_subscribers(subreddit):
-    """subs"""
+    """Use the Reddit api."""
+    url = f"https://www.reddit.com/r/{subreddit}/about.json"
     h = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) \
          AppleWebKit/537.36 (KHTML, like Gecko) \
          Chrome/97.0.4692.99 Safari/537.36"}
-    count = get('https://www.reddit.com/r/{}/about.json'.format(
-        subreddit), headers=h).json()
-    try:
-        return count.get('data').get('subscribers')
-    except:
+    res = get(url, headers=h, allow_redirects=False)
+
+    if res.status_code == 200:
+        try:
+            users = res.json()
+            users = users["data"]["subscribers"]
+            return users
+        except Exception as e:
+            return 0
+    else:
         return 0
 
 if __name__ == "__main__":
-    number_of_subscribers(argv[1])
+    number_of_subscribers(sys.argv[1])

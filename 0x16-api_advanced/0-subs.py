@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Get user counts from reddit api."""
 from requests import get
+import sys
 
 
 def number_of_subscribers(subreddit):
@@ -20,3 +21,6 @@ def number_of_subscribers(subreddit):
             return 0
     else:
         return 0
+
+if __name__ == "__main__":
+    number_of_subscribers(sys.argv[1])
